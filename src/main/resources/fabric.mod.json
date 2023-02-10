@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "better-frost-walker",
+	"version": "${version}",
+	"name": "Better Frost Walker",
+	"description": "Makes frost walker better!",
+	"authors": [
+		"OffsetMonkey538"
+	],
+	"contact": {
+		"sources": "https://github.offsetmonkey538.top/Better-Frost-Walker"
+	},
+	"license": "MIT",
+	"icon": "assets/better-frost-walker/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"top.offsetmonkey538.betterfrostwalker.BetterFrostWalker"
+		],
+		"client": [
+			"top.offsetmonkey538.betterfrostwalker.BetterFrostWalkerClient"
+		]
+	},
+	"mixins": [
+		"better-frost-walker.mixins.json",
+		{
+			"config": "better-frost-walker.client.mixins.json",
+			"environment": "client"
+		}
+	]
+}
