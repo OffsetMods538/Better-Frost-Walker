@@ -41,6 +41,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             )
     )
     private static boolean betterfrostwalker$makeFrostWalkerWorkWhileNotTouchingGround(LivingEntity instance) {
+        if (betterfrostwalker$capturedLevel != 2) return instance.isOnGround();
         return true;
     }
 
@@ -52,6 +53,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             )
     )
     private static double betterfrostwalker$checkTwoBlocksBelowPlayer(double constant) {
+        if (betterfrostwalker$capturedLevel != 2) return constant;
         return -2.0;
     }
 
@@ -64,6 +66,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             locals = LocalCapture.CAPTURE_FAILHARD
     )
     private static void betterfrostwalker$replaceKelpAndSeagrassWithIce(LivingEntity entity, World world, BlockPos blockPos, int level, CallbackInfo ci, BlockState blockState, float f, BlockPos.Mutable mutable, Iterator var7, BlockPos blockPos2, BlockState blockState2) {
+        if (level != 2) return;
         if (!blockState2.isAir()) return;
         Block block = world.getBlockState(blockPos2).getBlock();
         if (block != Blocks.KELP && block != Blocks.SEAGRASS && block != Blocks.TALL_SEAGRASS) return;
