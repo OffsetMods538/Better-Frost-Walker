@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
@@ -17,6 +18,20 @@ import java.util.Iterator;
 
 @Mixin(FrostWalkerEnchantment.class)
 public abstract class FrostWalkerEnchantmentMixin {
+
+    @Unique
+    private static int betterfrostwalker$capturedLevel;
+
+    @ModifyVariable(
+            method = "freezeWater",
+            at = @At("HEAD"),
+            argsOnly = true,
+            index = 3
+    )
+    private static int betterfrostwalker$captureEnchantmentLevel(int level) {
+        betterfrostwalker$capturedLevel = level;
+        return level;
+    }
 
     @Redirect(
             method = "freezeWater",
