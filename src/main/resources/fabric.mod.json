@@ -19,6 +19,9 @@
 		],
 		"client": [
 			"top.offsetmonkey538.betterfrostwalker.BetterFrostWalkerClient"
+		],
+		"preLaunch": [
+			"com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
 		]
 	},
 	"mixins": [
@@ -27,5 +30,9 @@
 			"config": "better-frost-walker.client.mixins.json",
 			"environment": "client"
 		}
-	]
+	],
+	"depends": {
+		"minecraft": "~1.19.3",
+		"fabric-api": "*"
+	}
 }
