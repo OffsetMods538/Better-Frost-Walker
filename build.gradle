@@ -51,7 +51,7 @@ dependencies {
 	implementation include("blue.endless:jankson:${project.jankson_version}")
 
 	// Fabric API, required for Paragon
-	modImplementation include(fabricApi.module("fabric-networking-api-v1", project.fabric_api_version))
+	modImplementation fabricApi.module("fabric-networking-api-v1", project.fabric_api_version)
 
 	// Mixin Extras
 	implementation include("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")

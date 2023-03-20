@@ -30,5 +30,8 @@
 			"config": "better-frost-walker.client.mixins.json",
 			"environment": "client"
 		}
-	]
+	],
+	"depends": {
+		"fabric-api": "*"
+	}
 }
