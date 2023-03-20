@@ -54,8 +54,11 @@ public abstract class FrostWalkerEnchantmentMixin {
     )
     private static void betterfrostwalker$replaceKelpAndSeagrassWithIce(LivingEntity entity, World world, BlockPos blockPos, int level, CallbackInfo ci, @Local(ordinal = 1) BlockPos iteratedPos, @Local(ordinal = 0) BlockState iceState) {
         if (level != REQUIRED_LEVEL.get() && REQUIRED_LEVEL.get() != 0) return;
+
+
         Block block = world.getBlockState(iteratedPos).getBlock();
         if (block != Blocks.KELP && block != Blocks.SEAGRASS && block != Blocks.TALL_SEAGRASS) return;
+
         world.setBlockState(iteratedPos, iceState);
         world.scheduleBlockTick(iteratedPos, Blocks.FROSTED_ICE, MathHelper.nextInt(entity.getRandom(), 60, 120));
     }
