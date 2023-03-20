@@ -19,6 +19,9 @@
 		],
 		"client": [
 			"top.offsetmonkey538.betterfrostwalker.BetterFrostWalkerClient"
+		],
+		"preLaunch": [
+			"com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
 		]
 	},
 	"mixins": [
