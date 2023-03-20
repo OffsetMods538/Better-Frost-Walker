@@ -60,6 +60,6 @@ public abstract class FrostWalkerEnchantmentMixin {
         if (block != Blocks.KELP && block != Blocks.SEAGRASS && block != Blocks.TALL_SEAGRASS) return;
 
         world.setBlockState(iteratedPos, iceState);
-        world.scheduleBlockTick(iteratedPos, Blocks.FROSTED_ICE, MathHelper.nextInt(entity.getRandom(), 60, 120));
+        world.createAndScheduleBlockTick(iteratedPos, Blocks.FROSTED_ICE, MathHelper.nextInt(entity.getRandom(), 60, 120));
     }
 }
