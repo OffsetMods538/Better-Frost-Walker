@@ -49,7 +49,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             method = "freezeWater",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/block/BlockState;getMaterial()Lnet/minecraft/block/Material;"
+                    target = "Lnet/minecraft/block/FrostedIceBlock;getMeltedState()Lnet/minecraft/block/BlockState;"
             )
     )
     private static void betterfrostwalker$replaceKelpAndSeagrassWithIce(LivingEntity entity, World world, BlockPos blockPos, int level, CallbackInfo ci, @Local(ordinal = 1) BlockPos iteratedPos, @Local(ordinal = 0) BlockState iceState) {
