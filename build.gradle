@@ -23,6 +23,7 @@ repositories {
 		url = "https://jitpack.io"
 		content {
 			includeGroup "com.github.llamalad7.mixinextras"
+			includeGroup "top.offsetmonkey538"
 		}
 	}
 }
@@ -44,12 +45,8 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	// Paragon
-	modImplementation include("maven.modrinth:paragon:${project.paragon_version}")
-	implementation include("blue.endless:jankson:${project.jankson_version}")
-
-	// Fabric API, required for Paragon
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	// Config library
+	include modImplementation("top.offsetmonkey538:MonkeyConfig538:${project.monkeyconfig538_version}")
 
 	// Mixin Extras
 	include(implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixinextras_version}")))

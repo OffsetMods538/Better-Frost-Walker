@@ -1,6 +1,5 @@
 package top.offsetmonkey538.betterfrostwalker;
 
-import com.kyanite.paragon.api.ConfigManager;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -13,6 +12,6 @@ public class BetterFrostWalker implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ConfigManager.register(MOD_ID, new BetterFrostWalkerConfig());
+		new BetterFrostWalkerConfig().init();
 	}
 }

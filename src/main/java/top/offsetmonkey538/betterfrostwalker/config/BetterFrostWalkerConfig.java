@@ -1,14 +1,20 @@
 package top.offsetmonkey538.betterfrostwalker.config;
 
-import com.kyanite.paragon.api.ConfigOption;
-import com.kyanite.paragon.api.interfaces.Config;
-import com.kyanite.paragon.api.interfaces.Description;
+import top.offsetmonkey538.monkeyconfig538.Config;
+import top.offsetmonkey538.monkeyconfig538.annotation.ConfigEntry;
 
-public class BetterFrostWalkerConfig implements Config {
+import static top.offsetmonkey538.betterfrostwalker.BetterFrostWalker.*;
 
-    @Description("The level of frost walker required for the mod to apply.\n0 = both levels,  1 = only the first level,  2 = only the second level.")
-    public static final ConfigOption<Integer> REQUIRED_LEVEL = new ConfigOption<>("required_level", 2);
+public class BetterFrostWalkerConfig extends Config {
 
-    @Description("If you can stand on powdered snow with frost walker.")
-    public static final ConfigOption<Boolean> CAN_STAND_ON_POWDERED_SNOW = new ConfigOption<>("can_stand_on_powdered_snow", true);
+    @ConfigEntry("The level of frost walker required for the mod to apply. 0 = both levels,  1 = only the first level,  2 = only the second level.")
+    public static int requiredLevel = 2;
+
+    @ConfigEntry("If you can stand on powdered snow with frost walker.")
+    public static boolean canStandOnPowderedSnow = true;
+
+    @Override
+    protected String getName() {
+        return MOD_ID;
+    }
 }

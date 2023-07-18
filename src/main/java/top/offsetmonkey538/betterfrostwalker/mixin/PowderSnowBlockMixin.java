@@ -10,8 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-
-import static top.offsetmonkey538.betterfrostwalker.config.BetterFrostWalkerConfig.CAN_STAND_ON_POWDERED_SNOW;
+import top.offsetmonkey538.betterfrostwalker.config.BetterFrostWalkerConfig;
 
 @Mixin(PowderSnowBlock.class)
 public abstract class PowderSnowBlockMixin {
@@ -22,7 +21,7 @@ public abstract class PowderSnowBlockMixin {
     )
     private static boolean betterfrostwalker$walkingOnPowderSnowWithFrostWalker(boolean original, Entity entity) {
         ItemStack feetStack;
-        if (!CAN_STAND_ON_POWDERED_SNOW.get() || !(entity instanceof LivingEntity livingEntity && (feetStack = livingEntity.getEquippedStack(EquipmentSlot.FEET)).hasEnchantments())) return original;
+        if (!BetterFrostWalkerConfig.canStandOnPowderedSnow || !(entity instanceof LivingEntity livingEntity && (feetStack = livingEntity.getEquippedStack(EquipmentSlot.FEET)).hasEnchantments())) return original;
 
         return EnchantmentHelper.get(feetStack).get(Enchantments.FROST_WALKER) > 0 || original;
     }
