@@ -22,7 +22,7 @@ repositories {
 		name = "JitPack"
 		url = "https://jitpack.io"
 		content {
-			includeGroup "com.github.LlamaLad7"
+			includeGroup "com.github.llamalad7.mixinextras"
 		}
 	}
 }
@@ -36,7 +36,6 @@ loom {
             sourceSet sourceSets.client
         }
     }
-
 }
 
 dependencies {
@@ -53,8 +52,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 	// Mixin Extras
-	implementation include("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
-	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixinextras_version}")
+	include(implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixinextras_version}")))
 }
 
 processResources {
