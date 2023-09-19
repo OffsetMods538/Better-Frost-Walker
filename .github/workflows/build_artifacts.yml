@@ -23,12 +23,6 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
 
-      - name: Generate resources with Gradle
-        continue-on-error: true
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: runDatagenClient
-
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:

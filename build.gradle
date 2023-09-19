@@ -100,7 +100,7 @@ publishing {
 
 modrinth {
 	token = System.getenv("MODRINTH_TOKEN")
-	projectId = "{{ cookiecutter.modId }}"
+	projectId = "better-frost-walker"
 	def customVersionName = System.getenv("VERSION_NAME")
 	if (customVersionName != null) versionName = customVersionName
 	versionNumber = "${project.version}"
