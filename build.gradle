@@ -9,19 +9,12 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version
+version = project.mod_version + project.minecraft_version
 group = project.maven_group
 
 outlet.mcVersionRange = project.minecraft_version
 
 repositories {
-	maven {
-		name = "Modrinth"
-		url = "https://api.modrinth.com/maven"
-		content {
-			includeGroup "maven.modrinth"
-		}
-	}
 	maven {
 		name = "JitPack"
 		url = "https://jitpack.io"
@@ -50,7 +43,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${outlet.loaderVersion()}"
 
 	// Config library
-	include modImplementation("top.offsetmonkey538:MonkeyConfig538:${project.monkeyconfig538_version}")
+	include modImplementation("top.offsetmonkey538:monkeyconfig538:${project.monkeyconfig538_version}")
 
 	// Mixin Extras
 	include(implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixinextras_version}")))
@@ -103,7 +96,7 @@ modrinth {
 	projectId = "better-frost-walker"
 	def customVersionName = System.getenv("VERSION_NAME")
 	if (customVersionName != null) versionName = customVersionName
-	versionNumber = "${project.version}"
+	versionNumber = "${version}"
 	versionType = "beta"
 	uploadFile = remapJar.archiveFile
 	//additionalFiles = [sourcesJar.archiveFile, javadocJar.archiveFile]

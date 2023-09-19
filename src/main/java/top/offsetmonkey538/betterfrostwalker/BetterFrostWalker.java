@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.offsetmonkey538.betterfrostwalker.config.BetterFrostWalkerConfig;
+import top.offsetmonkey538.monkeyconfig538.ConfigManager;
 
 public class BetterFrostWalker implements ModInitializer {
 	public static final String MOD_ID = "better-frost-walker";
@@ -12,6 +13,10 @@ public class BetterFrostWalker implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		new BetterFrostWalkerConfig().init();
+		ConfigManager.init(new BetterFrostWalkerConfig(), MOD_ID);
+	}
+
+	public static BetterFrostWalkerConfig config() {
+		return (BetterFrostWalkerConfig) ConfigManager.get(MOD_ID);
 	}
 }

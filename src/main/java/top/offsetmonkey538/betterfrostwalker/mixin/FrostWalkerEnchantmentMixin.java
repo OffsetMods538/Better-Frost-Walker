@@ -15,7 +15,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import top.offsetmonkey538.betterfrostwalker.config.BetterFrostWalkerConfig;
+
+import static top.offsetmonkey538.betterfrostwalker.BetterFrostWalker.*;
 
 @Mixin(FrostWalkerEnchantment.class)
 public abstract class FrostWalkerEnchantmentMixin {
@@ -28,7 +29,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             )
     )
     private static boolean betterfrostwalker$makeFrostWalkerWorkWhileNotTouchingGround(boolean original, @Local(argsOnly = true) int level) {
-        return (level == BetterFrostWalkerConfig.requiredLevel || BetterFrostWalkerConfig.requiredLevel == 0) || original;
+        return (level == config().requiredLevel || config().requiredLevel == 0) || original;
     }
 
     @ModifyArg(
@@ -40,7 +41,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             )
     )
     private static BlockPos betterfrostwalker$checkTwoBlocksBelowPlayer(BlockPos originalStartPos, @Local(argsOnly = true) int level) {
-        if (level != BetterFrostWalkerConfig.requiredLevel && BetterFrostWalkerConfig.requiredLevel != 0) return originalStartPos;
+        if (level != config().requiredLevel && config().requiredLevel != 0) return originalStartPos;
         return originalStartPos.down();
     }
 
@@ -52,7 +53,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             )
     )
     private static void betterfrostwalker$replaceKelpAndSeagrassWithIce(LivingEntity entity, World world, BlockPos blockPos, int level, CallbackInfo ci, @Local(ordinal = 1) BlockPos iteratedPos, @Local(ordinal = 0) BlockState iceState) {
-        if (level != BetterFrostWalkerConfig.requiredLevel && BetterFrostWalkerConfig.requiredLevel!= 0) return;
+        if (level != config().requiredLevel && config().requiredLevel!= 0) return;
 
 
         Block block = world.getBlockState(iteratedPos).getBlock();
