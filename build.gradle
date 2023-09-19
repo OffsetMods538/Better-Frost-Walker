@@ -116,7 +116,7 @@ modrinth {
 	}
 
 	dependencies {
-		embedded.version "monkeyconfig538", project.monkeyconfig538_version
+		embedded.version("monkeyconfig538", project.monkeyconfig538_version)
 	}
 }
 
