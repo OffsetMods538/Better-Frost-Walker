@@ -1,5 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.3-SNAPSHOT'
+	id 'io.github.dexman545.outlet' version '1.6.1'
+	id 'com.modrinth.minotaur' version '2.+'
 	id 'maven-publish'
 }
 
@@ -9,6 +11,8 @@ targetCompatibility = JavaVersion.VERSION_17
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+outlet.mcVersionRange = project.minecraft_version
 
 repositories {
 	maven {
@@ -42,8 +46,8 @@ loom {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	mappings "net.fabricmc:yarn:${outlet.yarnVersion(project.minecraft_version)}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${outlet.loaderVersion()}"
 
 	// Config library
 	include modImplementation("top.offsetmonkey538:MonkeyConfig538:${project.monkeyconfig538_version}")
@@ -93,3 +97,27 @@ publishing {
 		// retrieving dependencies.
 	}
 }
+
+modrinth {
+	token = System.getenv("MODRINTH_TOKEN")
+	projectId = "{{ cookiecutter.modId }}"
+	def customVersionName = System.getenv("VERSION_NAME")
+	if (customVersionName != null) versionName = customVersionName
+	versionNumber = "${project.version}"
+	versionType = "beta"
+	uploadFile = remapJar.archiveFile
+	//additionalFiles = [sourcesJar.archiveFile, javadocJar.archiveFile]
+	additionalFiles = [sourcesJar.archiveFile]
+	gameVersions = outlet.mcVersions()
+	syncBodyFrom = rootProject.file("README.md").text
+	def changelogFile = rootProject.file("CHANGELOG.md")
+	if (changelogFile.exists()) {
+		changelog = changelogFile.text
+	}
+
+	dependencies {
+		embedded.version "monkeyconfig538", project.monkeyconfig538_version
+	}
+}
+
+tasks.modrinth.dependsOn(tasks.modrinthSyncBody)
