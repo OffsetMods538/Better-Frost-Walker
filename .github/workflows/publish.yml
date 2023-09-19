@@ -1,14 +1,16 @@
-name: Build artifacts
+name: Publish the mod
 
 on:
-  push:
-    branches:
-      - "*"
+  release:
+    types: [published]
 
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v3
@@ -28,8 +30,19 @@ jobs:
         with:
           arguments: build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload to Modrinth
+        uses: gradle/gradle-build-action@v2
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+          VERSION_NAME: ${{ github.event.release.name }}
         with:
-          name: Artifacts
-          path: build/libs/
+          arguments: modrinth
+
+      - name: Upload to GitHub
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/libs/*.jar
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
