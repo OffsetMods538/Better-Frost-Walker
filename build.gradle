@@ -87,7 +87,7 @@ processResources {
 
 	filesMatching("fabric.mod.json") {
 		expand(Map.of(
-				"modVersion",                 project.version,
+				"modVersion",                 project.mod_version,
 				"supportedMinecraftVersions", project.supported_minecraft_versions
 		))
 	}
