@@ -18,7 +18,7 @@ public abstract class PowderSnowBlockMixin {
             at = @At("RETURN")
     )
     private static boolean betterfrostwalker$walkingOnPowderSnowWithFrostWalker(boolean original, Entity entity) {
-        if (!config().canStandOnPowderedSnow || !(entity instanceof LivingEntity livingEntity && EnchantmentHelper.hasFrostWalker(livingEntity))) return original;
+        if (!config.canStandOnPowderedSnow || !(entity instanceof LivingEntity livingEntity && EnchantmentHelper.hasFrostWalker(livingEntity))) return original;
 
         return true;
     }

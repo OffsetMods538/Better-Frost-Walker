@@ -29,7 +29,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             )
     )
     private static boolean betterfrostwalker$makeFrostWalkerWorkWhileNotTouchingGround(boolean original, @Local(argsOnly = true) int level) {
-        return (level == config().requiredLevel || config().requiredLevel == 0) || original;
+        return (level == config.requiredLevel || config.requiredLevel == 0) || original;
     }
 
     @ModifyArg(
@@ -41,7 +41,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             )
     )
     private static BlockPos betterfrostwalker$checkTwoBlocksBelowPlayer(BlockPos originalStartPos, @Local(argsOnly = true) int level) {
-        if (level != config().requiredLevel && config().requiredLevel != 0) return originalStartPos;
+        if (level != config.requiredLevel && config.requiredLevel != 0) return originalStartPos;
         return originalStartPos.down();
     }
 
@@ -53,7 +53,7 @@ public abstract class FrostWalkerEnchantmentMixin {
             )
     )
     private static void betterfrostwalker$replaceKelpAndSeagrassWithIce(LivingEntity entity, World world, BlockPos blockPos, int level, CallbackInfo ci, @Local(ordinal = 1) BlockPos iteratedPos, @Local(ordinal = 0) BlockState iceState) {
-        if (level != config().requiredLevel && config().requiredLevel!= 0) return;
+        if (level != config.requiredLevel && config.requiredLevel!= 0) return;
 
 
         Block block = world.getBlockState(iteratedPos).getBlock();

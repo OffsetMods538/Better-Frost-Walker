@@ -1,7 +1,9 @@
 package top.offsetmonkey538.betterfrostwalker.config;
 
 import blue.endless.jankson.Comment;
-import top.offsetmonkey538.monkeyconfig538.Config;
+import top.offsetmonkey538.monkeylib538.config.Config;
+
+import static top.offsetmonkey538.betterfrostwalker.BetterFrostWalker.*;
 
 public class BetterFrostWalkerConfig extends Config {
 
@@ -10,4 +12,9 @@ public class BetterFrostWalkerConfig extends Config {
 
     @Comment("If you can stand on powdered snow with frost walker.")
     public boolean canStandOnPowderedSnow = true;
+
+    @Override
+    protected String getName() {
+        return MOD_ID;
+    }
 }

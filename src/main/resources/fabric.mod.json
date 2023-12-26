@@ -32,6 +32,7 @@
 	],
 	"accessWidener": "better-frost-walker.accesswidener",
 	"depends": {
-		"minecraft": "${supportedMinecraftVersions}"
+		"minecraft": "${supportedMinecraftVersions}",
+		"monkeylib538": "*"
 	}
 }

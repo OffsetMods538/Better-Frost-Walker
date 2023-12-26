@@ -76,7 +76,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Config library
-	includeModImplementation "top.offsetmonkey538:monkeyconfig538:${project.monkeyconfig538_version}"
+	includeModImplementation "top.offsetmonkey538:monkeylib538:${project.monkeylib538_version}"
 }
 
 processResources {
@@ -127,7 +127,7 @@ modrinth {
 	}
 
 	dependencies {
-		embedded.version("monkeyconfig538", project.monkeyconfig538_version)
+		embedded.version("monkeylib538", project.monkeylib538_version)
 	}
 }
 
