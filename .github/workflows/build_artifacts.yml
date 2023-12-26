@@ -25,6 +25,8 @@ jobs:
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
+        env:
+          DISABLE_PROPERTIES_UPDATE: true
         with:
           arguments: build
 

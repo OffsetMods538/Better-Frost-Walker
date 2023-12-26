@@ -1,60 +1,98 @@
 plugins {
-	id 'fabric-loom' version '1.3-SNAPSHOT'
+	id 'fabric-loom' version '1.4-SNAPSHOT'
 	id 'io.github.dexman545.outlet' version '1.6.1'
 	id 'com.modrinth.minotaur' version '2.+'
-	id 'maven-publish'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = project.archives_base_name
-version = project.mod_version + project.minecraft_version
-group = project.maven_group
+archivesBaseName = "better-frost-walker"
+version = "${project.mod_version}+${project.minecraft_version}"
 
-outlet.mcVersionRange = project.minecraft_version
+outlet {
+	maintainPropertiesFile = System.getenv("DISABLE_PROPERTIES_UPDATE") == null
+	mcVersionRange = project.supported_minecraft_versions
+	propertiesData = [
+			'yarn_version': outlet.yarnVersion(project.minecraft_version),
+			'loader_version': outlet.loaderVersion()
+	]
+}
+
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		modid {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+
+	accessWidenerPath = file("src/main/resources/better-frost-walker.accesswidener")
+
+	runs {
+		server {
+			runDir "run/server"
+		}
+	}
+}
+
+// https://gist.github.com/maityyy/3dbcd558d58a6412c3a2a38c72706e8e
+afterEvaluate {
+	loom.runs.configureEach {
+		vmArg "-javaagent:${configurations.compileClasspath.find{ it.name.contains("sponge-mixin") }}"
+	}
+}
+
+configurations {
+	includeModImplementation
+
+	include.extendsFrom           includeModImplementation
+	modImplementation.extendsFrom includeModImplementation
+
+
+	includeImplementation
+
+	include.extendsFrom        includeImplementation
+	implementation.extendsFrom includeImplementation
+}
 
 repositories {
+	mavenCentral()
 	maven {
 		name = "JitPack"
 		url = "https://jitpack.io"
 		content {
-			includeGroup "com.github.llamalad7.mixinextras"
 			includeGroup "top.offsetmonkey538"
 		}
 	}
 }
 
-loom {
-    splitEnvironmentSourceSets()
-
-    mods {
-        modid {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
-        }
-    }
-}
-
 dependencies {
-	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${outlet.yarnVersion(project.minecraft_version)}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${outlet.loaderVersion()}"
+	mappings "net.fabricmc:yarn:${project.yarn_version}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Config library
-	include modImplementation("top.offsetmonkey538:monkeyconfig538:${project.monkeyconfig538_version}")
-
-	// Mixin Extras
-	include(implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-fabric:${project.mixinextras_version}")))
+	includeModImplementation "top.offsetmonkey538:monkeyconfig538:${project.monkeyconfig538_version}"
 }
 
 processResources {
-	inputs.property "version", project.version
+	inputs.properties(Map.of(
+			"modVersion",                 project.mod_version,
+			"supportedMinecraftVersions", project.supported_minecraft_versions
+	))
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand(Map.of(
+				"modVersion",                 project.version,
+				"supportedMinecraftVersions", project.supported_minecraft_versions
+		))
 	}
+
+	exclude ".cache/**"
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -62,32 +100,12 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 }
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
-	}
-}
-
-// configure the maven publication
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			from components.java
-		}
-	}
-
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+		rename { "${it}_${project.archivesBaseName}" }
 	}
 }
 
@@ -96,7 +114,7 @@ modrinth {
 	projectId = "better-frost-walker"
 	def customVersionName = System.getenv("VERSION_NAME")
 	if (customVersionName != null) versionName = customVersionName
-	versionNumber = "${version}"
+	versionNumber = "${project.version}"
 	versionType = "beta"
 	uploadFile = remapJar.archiveFile
 	//additionalFiles = [sourcesJar.archiveFile, javadocJar.archiveFile]
