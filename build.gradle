@@ -68,6 +68,13 @@ repositories {
 			includeGroup "top.offsetmonkey538"
 		}
 	}
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com"
+		content {
+			includeGroup "com.terraformersmc"
+		}
+	}
 }
 
 dependencies {
@@ -77,6 +84,9 @@ dependencies {
 
 	// Config library
 	includeModImplementation "top.offsetmonkey538:monkeylib538:${project.monkeylib538_version}"
+
+	// Modmenu
+	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
 processResources {

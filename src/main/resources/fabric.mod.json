@@ -35,6 +35,9 @@
 		"minecraft": "${supportedMinecraftVersions}",
 		"monkeylib538": ">=${monkeylib538Version}"
 	},
+	"suggests": {
+		"modmenu": ""
+	},
 	"custom": {
 		"modmenu": {
 			"links": {
