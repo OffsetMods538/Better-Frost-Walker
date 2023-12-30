@@ -34,5 +34,12 @@
 	"depends": {
 		"minecraft": "${supportedMinecraftVersions}",
 		"monkeylib538": ">=${monkeylib538Version}"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.offsetmonkey538.top/"
+			}
+		}
 	}
 }
