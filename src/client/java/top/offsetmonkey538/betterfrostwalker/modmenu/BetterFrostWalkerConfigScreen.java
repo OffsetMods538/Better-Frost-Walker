@@ -5,11 +5,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.OptionListWidget;
 import net.minecraft.client.option.SimpleOption;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import top.offsetmonkey538.betterfrostwalker.BetterFrostWalker;
 import top.offsetmonkey538.betterfrostwalker.config.BetterFrostWalkerConfig;
 import top.offsetmonkey538.monkeylib538.config.ConfigManager;
@@ -77,6 +79,7 @@ public class BetterFrostWalkerConfigScreen extends GameOptionsScreen {
                 })
                         .position(this.width / 4 - 50, this.height - 27)
                         .size(100, 20)
+                        .tooltip(Tooltip.of(Text.translatable("better_frost_walker.options.default.tooltip").withColor(Formatting.RED.getColorValue())))
                         .build()
         );
     }
