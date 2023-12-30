@@ -21,6 +21,9 @@
 		],
 		"client": [
 			"top.offsetmonkey538.betterfrostwalker.BetterFrostWalkerClient"
+		],
+		"modmenu": [
+			"top.offsetmonkey538.betterfrostwalker.modmenu.BetterFrostWalkerModMenu"
 		]
 	},
 	"mixins": [
