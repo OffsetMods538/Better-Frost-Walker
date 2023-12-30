@@ -69,6 +69,16 @@ public class BetterFrostWalkerConfigScreen extends GameOptionsScreen {
                         .size(100, 20)
                         .build()
         );
+
+        this.addDrawableChild(
+                ButtonWidget.builder(Text.translatable("better_frost_walker.options.default"), (button) -> {
+                    config = new BetterFrostWalkerConfig();
+                    this.init();
+                })
+                        .position(this.width / 4 - 50, this.height - 27)
+                        .size(100, 20)
+                        .build()
+        );
     }
 
     @Override
