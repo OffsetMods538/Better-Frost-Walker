@@ -1,0 +1,11 @@
+{
+	"better_frost_walker.options": "Options",
+	"better_frost_walker.options.default": "Default",
+	"better_frost_walker.options.default.tooltip": "WARNING: Resets config to default values. Still needs to be saved by pressing \"Done\".",
+
+	"better_frost_walker.options.requiredLevel": "Required Level",
+	"better_frost_walker.options.requiredLevel.tooltip": "The level of frost walker required for the mod to apply.",
+
+	"better_frost_walker.options.canStandOnPowderedSnow": "Powdered snow",
+	"better_frost_walker.options.canStandOnPowderedSnow.tooltip": "If you can stand on powdered snow with frost walker."
+}

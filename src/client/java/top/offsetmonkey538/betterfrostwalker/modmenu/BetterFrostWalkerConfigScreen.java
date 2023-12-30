@@ -34,7 +34,7 @@ public class BetterFrostWalkerConfigScreen extends GameOptionsScreen {
                 new SimpleOption[] {
                         new SimpleOption<>(
                                 "better_frost_walker.options.requiredLevel",
-                                SimpleOption.constantTooltip(Text.translatable("better_frost_walker.options.tooltip.requiredLevel")),
+                                SimpleOption.constantTooltip(Text.translatable("better_frost_walker.options.requiredLevel.tooltip")),
                                 ((optionText, value) -> value == 0 ? Text.of("Both") : Text.of(String.valueOf(value))),
                                 new SimpleOption.PotentialValuesBasedCallbacks<>(List.of(0, 1, 2), Codec.INT),
                                 config.requiredLevel,
@@ -42,8 +42,8 @@ public class BetterFrostWalkerConfigScreen extends GameOptionsScreen {
                         ),
                         new SimpleOption<>(
                                 "better_frost_walker.options.canStandOnPowderedSnow",
-                                SimpleOption.constantTooltip(Text.translatable("better_frost_walker.options.tooltip.canStandOnPowderedSnow")),
-                                ((optionText, value) -> value ? ScreenTexts.YES : ScreenTexts.NO),
+                                SimpleOption.constantTooltip(Text.translatable("better_frost_walker.options.canStandOnPowderedSnow.tooltip")),
+                                ((optionText, value) -> value ? ScreenTexts.ON : ScreenTexts.OFF),
                                 SimpleOption.BOOLEAN,
                                 config.canStandOnPowderedSnow,
                                 value -> config.canStandOnPowderedSnow = value
