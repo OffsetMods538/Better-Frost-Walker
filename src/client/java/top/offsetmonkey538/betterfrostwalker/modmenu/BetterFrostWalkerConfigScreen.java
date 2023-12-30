@@ -11,6 +11,7 @@ import net.minecraft.client.option.SimpleOption;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import top.offsetmonkey538.betterfrostwalker.BetterFrostWalker;
+import top.offsetmonkey538.betterfrostwalker.config.BetterFrostWalkerConfig;
 import top.offsetmonkey538.monkeylib538.config.ConfigManager;
 
 import java.util.List;
@@ -54,11 +55,20 @@ public class BetterFrostWalkerConfigScreen extends GameOptionsScreen {
                     ConfigManager.save(config, BetterFrostWalker.LOGGER::error);
                     this.client.setScreen(this.parent);
                 })
-                        .position(this.width / 2 - 100, this.height - 27)
-                        .size(200, 20)
+                        .position((this.width / 4) * 3 - 50, this.height - 27)
+                        .size(100, 20)
                         .build()
         );
 
+        this.addDrawableChild(
+                ButtonWidget.builder(ScreenTexts.CANCEL, (button) -> {
+                    config = ConfigManager.load(config, BetterFrostWalker.LOGGER::error);
+                    this.client.setScreen(this.parent);
+                })
+                        .position(this.width / 2 - 50, this.height - 27)
+                        .size(100, 20)
+                        .build()
+        );
     }
 
     @Override
