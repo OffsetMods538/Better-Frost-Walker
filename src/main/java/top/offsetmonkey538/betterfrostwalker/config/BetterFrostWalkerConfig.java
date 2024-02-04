@@ -13,6 +13,9 @@ public class BetterFrostWalkerConfig extends Config {
     @Comment("If you can stand on powdered snow with frost walker.")
     public boolean canStandOnPowderedSnow = true;
 
+    @Comment("If boats will spawn ice when the driver has frost walker.")
+    public boolean applyToBoats = true;
+
     @Override
     protected String getName() {
         return MOD_ID;

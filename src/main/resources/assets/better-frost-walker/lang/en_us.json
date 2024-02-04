@@ -7,5 +7,8 @@
 	"better_frost_walker.options.requiredLevel.tooltip": "The level of frost walker required for the mod to apply.",
 
 	"better_frost_walker.options.canStandOnPowderedSnow": "Powdered snow",
-	"better_frost_walker.options.canStandOnPowderedSnow.tooltip": "If you can stand on powdered snow with frost walker."
+	"better_frost_walker.options.canStandOnPowderedSnow.tooltip": "If you can stand on powdered snow with frost walker.",
+
+	"better_frost_walker.options.applyToBoats": "Boats",
+	"better_frost_walker.options.applyToBoats.tooltip": "If boats will spawn ice when the driver has frost walker."
 }

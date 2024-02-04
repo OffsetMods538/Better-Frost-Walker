@@ -47,6 +47,14 @@ public class BetterFrostWalkerConfigScreen extends GameOptionsScreen {
                                 SimpleOption.BOOLEAN,
                                 config.canStandOnPowderedSnow,
                                 value -> config.canStandOnPowderedSnow = value
+                        ),
+                        new SimpleOption<>(
+                                "better_frost_walker.options.applyToBoats",
+                                SimpleOption.constantTooltip(Text.translatable("better_frost_walker.options.applyToBoats.tooltip")),
+                                ((optionText, value) -> value ? ScreenTexts.ON : ScreenTexts.OFF),
+                                SimpleOption.BOOLEAN,
+                                config.applyToBoats,
+                                value -> config.applyToBoats = value
                         )
                 }
         );

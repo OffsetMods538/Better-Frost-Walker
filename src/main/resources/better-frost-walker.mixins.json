@@ -1,12 +1,13 @@
 {
-    "required": true,
-    "package": "top.offsetmonkey538.betterfrostwalker.mixin",
-    "compatibilityLevel": "JAVA_17",
-    "mixins": [
-        "FrostWalkerEnchantmentMixin",
-        "PowderSnowBlockMixin"
-    ],
-    "injectors": {
-        "defaultRequire": 1
+	"required": true,
+	"package": "top.offsetmonkey538.betterfrostwalker.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"BoatEntityMixin",
+		"FrostWalkerEnchantmentMixin",
+		"PowderSnowBlockMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
 	}
 }
