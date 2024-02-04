@@ -1,7 +1,6 @@
 # Better Frost Walker
 
-As of version `1.1.3`, the mod now needs MonkeyLib538 to function. Please download it from here. (TODO: add link when released).  
-MonkeyLib538 isn't yet released on modrinth, please download it from [here](https://github.com/OffsetMods538/MonkeyLib538/releases).
+As of version `1.1.3`, the mod now needs MonkeyLib538 to function. Please download it from [here](https://modrinth.com/mod/monkeylib538). 
 
 ## What is this?
 Ever wanted sprint-jump on water?  
